@@ -7,7 +7,7 @@
 - **[Installation](#installation)**
   - [**Install docker in ubuntu**](#install-docker-in-ubuntu)
   - [**Uninstall old versions**](#uninstall-old-versions)
-  - [**Unistall docker**](#unistall-docker)
+  - [**Uninstall docker**](#uninstall-docker)
 - **[Commands of docker](#commands-of-docker)**
 - **[Fix problem in docker](#fix-problem-in-docker)**
 
@@ -77,7 +77,7 @@ sudo usermod -aG docker USER
 sudo apt remove docker docker-engine docker.io containerd runc
 ```
 
-### Unistall docker
+### Uninstall docker
 
 Uninstall docker engine, cli and containerd packages
 
