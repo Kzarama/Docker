@@ -2,7 +2,18 @@
 
 ![Docker](img/docker.png)
 
-## To install docker in ubuntu
+## Content
+
+- **[Installation](#installation)**
+  - [**Install docker in ubuntu**](#install-docker-in-ubuntu)
+  - [**Uninstall old versions**](#uninstall-old-versions)
+  - [**Unistall docker**](#unistall-docker)
+- **[Commands of docker](#commands-of-docker)**
+- **[Fix problem in docker](#fix-problem-in-docker)**
+
+## Installation
+
+### Install docker in ubuntu
 
 To update the packages
 
@@ -60,13 +71,13 @@ To authorize docker, and use docker without sudo
 sudo usermod -aG docker USER
 ```
 
-## Uninstall old versions
+### Uninstall old versions
 
 ```bash
 sudo apt remove docker docker-engine docker.io containerd runc
 ```
 
-## Unistall docker
+### Unistall docker
 
 Uninstall docker engine, cli and containerd packages
 
@@ -78,4 +89,24 @@ To delete images, containers and volumes
 
 ```bash
 sudo rm -rf /var/lib/docker
+```
+
+## Commands of docker
+
+See the containers that are running
+
+```bash
+docker ps
+```
+
+## Fix problem in docker
+
+Fix error failed to register layer
+
+```bash
+service docker stop
+```
+
+```bash
+service docker start
 ```
