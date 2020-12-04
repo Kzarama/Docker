@@ -5,9 +5,9 @@
 ## Content
 
 - **[Installation](#installation)**
-  - [**Install docker in ubuntu**](#install-docker-in-ubuntu)
-  - [**Uninstall old versions**](#uninstall-old-versions)
-  - [**Uninstall docker**](#uninstall-docker)
+  - **[Install docker in ubuntu](#install-docker-in-ubuntu)**
+  - **[Uninstall old versions](#uninstall-old-versions)**
+  - **[Uninstall docker](#uninstall-docker)**
 - **[Commands of docker](#commands-of-docker)**
 - **[Fix problem in docker](#fix-problem-in-docker)**
 
@@ -32,7 +32,7 @@ sudo apt install \
     software-properties-common
 ```
 
-Add the oficial docker GPG key
+Add the official docker GPG key
 
 ```bash
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -93,10 +93,89 @@ sudo rm -rf /var/lib/docker
 
 ## Commands of docker
 
+(with CONTAINER_ID or NAMES)
+
+### Run
+
+Run a container
+
+```bash
+docker run [OPTIONS] CONTAINER_IMAGE [COMMAND]
+```
+
+Options:  
+-n, --name string = to name the container  
+-it = iterative mode  
+-d, --detach = to run the container in background with `tail -f /dev/null`  
+-p, -publish list = to expose in the ports of the pc, the ports of the container, in list int:int `(PC_PORT:CONTAINER_PORT)`
+
+### Exec
+
+Execute a command or process in a up container
+
+```bash
+docker exec -it NAMES COMMAND
+```
+
+### Ps
+
 See the containers that are running
 
 ```bash
 docker ps
+```
+
+See the all containers
+
+```bash
+docker ps -a
+```
+
+### Rm
+
+Delete containers
+
+```bash
+docker rm NAMES
+```
+
+### Container
+
+Delete all containers exited
+
+```bash
+docker container prune
+```
+
+### Logs
+
+To see the logs of the containers
+
+```bash
+docker logs [OPTIONS] NAMES
+```
+
+Options:  
+-f = follow the logs
+
+### Inspect
+
+All data of the container
+
+```bash
+docker inspect NAMES
+```
+
+Filter the process id of the container
+
+```bash
+docker inspect --format '{{.State.Pid}}' NAMES
+```
+
+Kill the process of the container in linux
+
+```bash
+kill -9 PROCESS_ID
 ```
 
 ## Fix problem in docker
