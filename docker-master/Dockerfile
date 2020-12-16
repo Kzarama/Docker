@@ -1,4 +1,4 @@
-FROM python
+FROM node
 
 COPY ["package-lock.json", "package.json", "/usr/src/"]
 
@@ -10,4 +10,4 @@ COPY [".", "/usr/src/"]
 
 EXPOSE 3000
 
-CMD ["npx", "nodemon", "index.js"]
+CMD ["node", "index.js"]
