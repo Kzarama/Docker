@@ -22,6 +22,7 @@
   - **[Install docker-compose](#install-docker-compose)**
   - **[Commands](#commands-of-docker-compose)**
   - **[Bind mounts](#bind-mounts)**
+- **[Docker un docker](#docker-in-docker)**
 - **[Fix problem in docker](#fix-problem-in-docker)**
 
 # Installation
@@ -123,6 +124,19 @@ Options:
 - -it = iterative mode
 - -d, --detach = to run the container in background with `tail -f /dev/null`
 - -p, -publish list = to expose in the ports of the pc, the ports of the container, in list int:int `(PC_PORT:CONTAINER_PORT)`
+- --memory memory_size = limit of the memory for the container
+
+Stats of docker
+
+```bash
+docker stats
+```
+
+Process of the container
+
+```bash
+docker exec NAMES ps -ef
+```
 
 Execute a command or process in a up container
 
@@ -133,13 +147,24 @@ docker exec -it NAMES COMMAND
 See the containers that are running
 
 ```bash
-docker ps
+docker ps OPTIONS
 ```
 
-See the all containers
+Options:
+
+- -a = list the all containers
+- -l = latest container
+
+Stops the container (send a SIGTERM)
 
 ```bash
-docker ps -a
+docker stop NAMES
+```
+
+Kill the container (send a SIGKILL)
+
+```bash
+docker kill NAMES
 ```
 
 Delete containers
@@ -152,6 +177,18 @@ Delete all containers exited
 
 ```bash
 docker container prune
+```
+
+Delete all containers
+
+```bash
+docker rm -f $(docker ps -aq)
+```
+
+Delete containers, networks, images and cache
+
+```bash
+docker system prune
 ```
 
 To see the logs of the containers
@@ -244,7 +281,8 @@ docker push DOCKER_USERNAME/NAME:TAG
 - workdir = path of the work directory
 - run = run command
 - expose = expose a port in the pc
-- cmd = default command, that run when the container is exposed
+- entrypoint = use with cmd, with cmd like parameter of this and this run a command
+- cmd = default command, that run when the container is exposed (use [])
 
 # File data
 
@@ -284,6 +322,18 @@ Create a volume
 docker volume create VOLUME_NAME
 ```
 
+Delete a volume
+
+```bash
+docker volume rm VOLUME_NAME
+```
+
+Delete all networks not exited
+
+```bash
+docker volume prune
+```
+
 Run a container using a volume (src= source volume, dst= folder destination in the container)
 
 ```bash
@@ -318,6 +368,18 @@ Create a network
 
 ```bash
 docker network create --attachable NETWORK
+```
+
+Delete a network
+
+```bash
+docker network rm NETWORK
+```
+
+Delete all networks not exited
+
+```bash
+docker network prune
 ```
 
 Connect container at the network
@@ -395,6 +457,14 @@ For the register the changes is necessary build again the app and run the comman
 ## Bind mounts
 
 In the service of the docker-compose file add volumes: and for copy the files use PC_PATH:PATH, for ignore only put the route
+
+# Docker un docker
+
+Run docker in a docker container
+
+```bash
+docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock docker
+```
 
 ## Fix problem in docker
 
